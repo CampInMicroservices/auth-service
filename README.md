@@ -5,7 +5,10 @@
 Auth PROTO:
 
 ```
-TODO
+{
+    "email": "admin@test.com",
+    "password": "test"
+}
 ```
 
 ### Modifying Auth Proto
