@@ -6,6 +6,9 @@ import (
 	"auth-service/proto"
 	"context"
 	"log"
+
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 )
 
 type ServerGRPC struct {
@@ -32,7 +35,7 @@ func (s *ServerGRPC) Login(ctx context.Context, in *proto.AuthRequest) (*proto.A
 	// Execute query.
 	result, err := s.store.AuthenticateUser(ctx, arg)
 	if err != nil {
-		return nil, err
+		return nil, status.Error(codes.NotFound, err.Error())
 	}
 
 	// Create response object
