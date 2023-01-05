@@ -19,6 +19,7 @@ spec:
           image: simenravnik/auth-service:latest
           ports:
             - containerPort: 9000
+          imagePullPolicy: Always
 ---
 apiVersion: v1
 kind: Service
