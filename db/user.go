@@ -2,7 +2,6 @@ package db
 
 import (
 	"context"
-	"log"
 	"strconv"
 	"time"
 )
@@ -34,8 +33,6 @@ func (store *Store) AuthenticateUser(ctx context.Context, arg LoginParam) (Crede
 	const query = `SELECT * FROM "users" WHERE "email" = $1 AND "password" = $2`
 	row := store.db.QueryRowContext(ctx, query, arg.Email, arg.Password)
 
-	log.Println("sem tu")
-
 	var user User
 	err := row.Scan(
 		&user.ID,
@@ -49,8 +46,6 @@ func (store *Store) AuthenticateUser(ctx context.Context, arg LoginParam) (Crede
 	if err != nil {
 		return Credentials{}, err
 	}
-
-	log.Println("sem tu 2")
 
 	var credentias Credentials
 	jwt, err := generateJWT(user.ID)
